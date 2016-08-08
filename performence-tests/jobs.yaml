@@ -1,6 +1,6 @@
-
+  
 - job-template:
-    name: prepare-environment
+    name: prepare-environment-{cloud}
     concurrent: false
     builders:
       - shell:
@@ -15,7 +15,7 @@
           name: TEST
 
 - job-template:
-    name: run-tests
+    name: run-tests-{cloud}
     concurrent: false
     builders:
       - shell:
@@ -32,7 +32,7 @@
           name: ITERATIONS
 
 - job-template:
-    name: publish-results
+    name: publish-results-{cloud}
     builders:
       - shell:
           !include-raw-escape scripts/publish-results.sh
@@ -46,7 +46,7 @@
           name: ENGINE
 
 - job-template:
-    name: cleanup-environment
+    name: cleanup-environment-{cloud}
     builders:
       - shell:
           !include-raw-escape scripts/cleanup-environment.sh
