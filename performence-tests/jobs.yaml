@@ -10,6 +10,8 @@
       - workspace-cleanup
     parameters:
       - string:
+          name: ENGINE
+      - string:
           name: CLOUD
       - string:
           name: TEST
@@ -24,6 +26,8 @@
       - ansicolor
       - workspace-cleanup
     parameters:
+      - string:
+          name: ENGINE
       - string:
           name: CLOUD
       - string:
@@ -55,6 +59,18 @@
       - workspace-cleanup
     parameters:
       - string:
+          name: ENGINE
+      - string:
           name: CLOUD
       - string:
           name: TEST
+
+- job-group:
+    name: {engine}-tests
+    engine: perfkit
+    test: ping,netperf,iperf,coremark,fio
+    jobs:
+      - prepare-environment-{cloud}
+      - run-tests-{cloud}
+      - publish-results-{cloud}
+      - cleanup-environment-{cloud}
