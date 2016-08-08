@@ -1,0 +1,30 @@
+
+- project:
+    name: test-openstack-cloud
+    cloud: OpenStack
+    test: ping,netperf,iperf,coremark,fio
+    jobs:
+      - prepare-environment
+      - run-tests
+      - publish-results
+      - cleanup-environment
+
+- project:
+    name: test-amazon-web-services
+    cloud: AWS
+    test: ping,netperf,iperf,coremark,fio
+    jobs:
+      - prepare-environment
+      - run-tests
+      - publish-results
+      - cleanup-environment
+
+- project:
+    name: test-google-cloud-platform
+    cloud: GCP
+    test: ping,netperf,iperf,coremark,fio
+    jobs:
+      - prepare-environment
+      - run-tests
+      - publish-results
+      - cleanup-environment

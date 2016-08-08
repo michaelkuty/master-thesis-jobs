@@ -1,0 +1,60 @@
+
+- job-template:
+    name: prepare-environment
+    concurrent: false
+    builders:
+      - shell:
+          !include-raw-escape scripts/prepare-environment.sh
+    wrappers:
+      - ansicolor
+      - workspace-cleanup
+    parameters:
+      - string:
+          name: CLOUD
+      - string:
+          name: TEST
+
+- job-template:
+    name: run-tests
+    concurrent: false
+    builders:
+      - shell:
+          !include-raw-escape scripts/run-tests.sh
+    wrappers:
+      - ansicolor
+      - workspace-cleanup
+    parameters:
+      - string:
+          name: CLOUD
+      - string:
+          name: TEST
+      - string:
+          name: ITERATIONS
+
+- job-template:
+    name: publish-results
+    builders:
+      - shell:
+          !include-raw-escape scripts/publish-results.sh
+    wrappers:
+      - ansicolor
+      - workspace-cleanup
+    parameters:
+      - string:
+          name: ENDPOINT
+      - string:
+          name: ENGINE
+
+- job-template:
+    name: cleanup-environment
+    builders:
+      - shell:
+          !include-raw-escape scripts/cleanup-environment.sh
+    wrappers:
+      - ansicolor
+      - workspace-cleanup
+    parameters:
+      - string:
+          name: CLOUD
+      - string:
+          name: TEST

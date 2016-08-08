@@ -1,0 +1,7 @@
+- defaults:
+    name: global
+    project-type: freestyle
+    description: |
+      <p><b>This job is managed by config management and will be overwritten.</b></p>
+      <p><b>Do not edit this job through the web!</b></p>
+    concurrent: false
